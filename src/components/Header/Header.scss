@@ -1,0 +1,36 @@
+.main-nav{
+width: 50%;
+height: inherit;
+display: flex;
+justify-content: space-evenly;
+align-items: center;
+margin: auto;
+
+}
+
+.main-nav>a{
+  text-decoration: none;
+  color: rgb(5, 90, 151);
+  font-weight: 500;
+  padding-right: 30px;
+  padding-left: 10px;
+
+}
+.main-header{
+  height: 80px;
+  background-color: rgba(255, 255, 255, 0.584);
+  position: fixed;
+  width: 100%;
+  z-index: 100000;
+  top: 0;
+
+}
+
+.main-nav>a:hover{
+  border-bottom: 2px solid rgb(5, 90, 151) ;
+  
+}
+.main-nav-active{
+  border-bottom: 2px solid rgb(5, 90, 151) ;
+  
+}
