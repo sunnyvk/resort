@@ -1,5 +1,5 @@
 import React from 'react'
-import './Header.scss'
+import './Header.css'
 import { NavLink } from 'react-router-dom'
 import { Outlet } from 'react-router-dom'
 
@@ -11,8 +11,8 @@ const Header = () => {
             <NavLink to='/'  className={({ isActive }) => (isActive ? 'main-nav-active' : '')}><span>Home</span></NavLink>
             <NavLink><span>RESORTS</span></NavLink>
             <NavLink><span>FOR SALE</span></NavLink>
-            <NavLink><span>SPECIALS</span></NavLink>
-            <NavLink><span>ABOUT</span></NavLink>
+            <NavLink  to='/spa' className={({ isActive }) => (isActive ? 'main-nav-active' : '')}><span>SPA</span></NavLink>
+            <NavLink to='/about' className={({ isActive }) => (isActive ? 'main-nav-active' : '')}><span>ABOUT</span></NavLink>
             <NavLink><span>REVIEWS</span></NavLink>
         </nav>      
     </header>
