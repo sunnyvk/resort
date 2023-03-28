@@ -1,5 +1,8 @@
 import React from 'react'
 import './Footer.css'
+import { AiOutlineRight} from 'react-icons/ai';
+import logo from '../../assets/logo.png'
+
 const Footer = () => {
   return (
     <>
@@ -9,18 +12,21 @@ const Footer = () => {
       <p >From 7.99% OAC with amortization of 180 months for new cottages. Maximum to finance $200,000. These rates are subject to change without notice. E &amp; O.E. For down payments, a maximum of $20,000 can be paid using a credit card. Any further payments can be paid by transfer or certified cheque.</p>
     </div>
   </div>
+
+
   <footer id='footer'>
+    
     <div className='footer1 another '>
+
       <div className='footer2'>
         <div>
           <h3>CORPORATE OFFICE</h3>
           <h4>612-A Welland Avenue St. Catharines,<br /> ON L2M 5V6Toll-Free: +1 877-814-4141<br /></h4>
-          <img src="./gbr-footer.png" alt="Great Blue Resorts"></img>
-
-
+          <img src={logo} alt="Great Blue Resorts"></img>
         </div>
 
       </div>
+
       <div class="social page">
         <h3>Let's Get Social</h3>
         <div class="socialLinks">
@@ -61,6 +67,7 @@ const Footer = () => {
           </div>
         </div>
       </div >
+
       <div class="newsletter">
 
         <h4>
@@ -75,17 +82,13 @@ const Footer = () => {
           <a href="/contact/" title="Contact">Contact</a>
         </p>
       </div>
+
     </div >
-    <div class="row expanded footer" role="contentinfo">
-      <div class="large-12 medium-12 small-12 columns">
-        <p><strong>Copyright ©2023 Great Blue Resorts. All Rights Reserved.</strong></p>
-        <p>All files and information contained in this Website or are copyright by Great Blue Resorts, and may not be duplicated, copied, modified or adapted, in any way without our written permission. GreatBlueResorts.com may contain our service marks or trademarks as well as those of our affiliates or other companies, in the form of words, graphics, and logos. Your use of our Website does not constitute any right or license for you to use our logo, trade or word marks, images, renderings or copy without the prior written permission of Great Blue Resorts. Our website content including verbiage, images and renderings, is protected under Canada and foreign copyrights. The copying, redistribution, use or publication by you of any such Content, is strictly prohibited. Your use of our Website does not grant you any ownership rights of any kind, to its content therein.</p>
-        <p><span class="design">Site by <a href="http://www.do180.com/" title="180 Marketing" target="_blank" class="do180">180 Marketing</a></span></p>
-      </div>
-    </div>
+
+    
   </footer >
   <div className='formTab tellMe open'>
-    <h3 class="mainFormTitle open">Discover More</h3>
+    <h3 class="mainFormTitle open"> DISCOVER MORE {<AiOutlineRight/>}</h3>
   </div>
   </>
   )

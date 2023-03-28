@@ -9,8 +9,8 @@
     .row{
         font-family: roboto,sans-serif;
         font-size: 17px;
-        line-height: 29px;
-        text-align: left;
+        line-height: 20px;
+        text-align: center;
         font-weight: 300;
     
     
@@ -20,7 +20,7 @@
     }
 
 
-    p{
+    .fintPrintBar>   p{
         text-align: center;
         margin: 0 0 10px;
     }
@@ -36,21 +36,21 @@
         
     }
     .footer1{
-        padding-bottom: 60px;
-        display: inline-flex;
+        padding: 60px 150px 60px 30px ;
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
     }
     .footer2{
         display: flex;
     }
-    .another{
-        max-width: none;
-    }
+
     img{
         vertical-align: middle;
         text-align: center;
         padding-top: 30px;
     }
-    h3{
+    .fintPrintBar>  h3{
         padding-top: 30px;
         font-size: 35px;
         line-height: 40px;
@@ -59,7 +59,7 @@
         color: #fff;
         margin-bottom: 15px;
     }
-    h4{
+    .fintPrintBar>  h4{
         text-transform: uppercase;
         font-size: 14px;
         line-height: 20px;
@@ -97,7 +97,7 @@
         min-height: 1.2em;
         padding: 0px 2px 1px;
     }
-    span{
+    .fintPrintBar>    span{
         white-space:nowrap;
     }
     .img1{
@@ -106,8 +106,9 @@
          padding-right: 3px;
     }
     .newsletter{
-        text-align: end;
+        text-align: center;
         float:right;
+
         
         
     }
@@ -137,18 +138,41 @@
     .formTab.tellMe.open {
         background-color: #f7941d;
         background-image: none;
-        padding-left: 20px;
+        padding: 15px 5px 0px 0;
+        padding-left: 70px;
+        
+    }
+    .formTab.open:hover {
+        background-color: #009fe1;
+        
     }
     .formTab.tellMe {
-        max-height: 300px;
         overflow-y: scroll;
         position: fixed;
         bottom: 0;
         right: 0;
-        max-width: 465px;
         padding: 0 20px 0 80px;
         z-index: 99999999;
-        background-image: url("./discover-more-background.png");
-        background-size: cover;
-        
+        background-size: cover;  
+        clip-path: polygon(10% 0,100% 0,100% 100%,0 100%);
+    }
+  .mainFormTitle{
+    font-size: 35px;
+    color: white;
+  }
+  .greatbluesort{
+    padding: 40px 0;
+  }
+
+
+    @media (max-width:1000px){
+        .footer1{
+            padding: 10px;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+        .footer2{
+            justify-content: center;
+        }
     }

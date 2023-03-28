@@ -1,8 +1,8 @@
 .main-nav{
-width: 50%;
 height: inherit;
 display: flex;
-justify-content: space-evenly;
+justify-content: center;
+
 align-items: center;
 margin: auto;
 
@@ -14,11 +14,12 @@ margin: auto;
   font-weight: 500;
   padding-right: 30px;
   padding-left: 10px;
+  margin: 0 5px;
 
 }
 .main-header{
   height: 80px;
-  background-color: rgba(255, 255, 255, 0.584);
+  background-color: rgba(255, 255, 255, 0.935);
   position: fixed;
   width: 100%;
   z-index: 100000;

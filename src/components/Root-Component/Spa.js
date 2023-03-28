@@ -3,59 +3,44 @@ import './Spa.css'
 
 const Spa = () => {
     return (
-        <div class="main">
-            <img src="https://www.greatblueresorts.com/wp-content/uploads/2019/05/SpecialOffers-1-1800x450.jpg" alt="Special Offers from Great Blue Resorts" class="banner desktop" />
+        <main className="main-spa">
+            <img src="https://www.greatblueresorts.com/wp-content/uploads/2019/05/SpecialOffers-1-1800x450.jpg"
+             alt="Special Offers from Great Blue Resorts" className="banner" />
 
-            <div class="container">
-                <div class="row">
-                    <div class="columns large-12 main-container">
+          
+                        <main class="spa-parent">
+                            <section className="entry-point-spa" >
 
+                                
+                                            <div className='firts-content-spa'>
+                                                <h1 >SPA</h1>
 
-                        <main class="profile-page-type-wrapper main noSlider">
-                            <div id="profile-page-type" class="generic-page-type profile-page-type inner-page generic-inner-page-type full-width">
+                                                <h2 >Ayurvedic Spa Treatments in Goa</h2>
 
-
-
-                                <div class="row">
-                                    <div class="columns large-12 small-12">
-                                        <div class="ps-top-padding">
-
-
-                                            <div class="main-body-profile-page-type content-main">
-                                                <h1 class="heading-h1">SPA</h1>
-
-                                                <h2 class="sub-heading">Ayurvedic Spa Treatments in Goa</h2>
-
-                                                <h6 class="sub-h6">“Kalpaka Spa”</h6>
+                                                <h6 >“Kalpaka Spa”</h6>
 
                                                 <p>Welcome to a World of Rejuvenation. At Kalpaka Spa– Find Yourself In The Hands Of Our Expert Masseurs – All The Way From Kerala.</p>
+                                                <p>CALM THOSE NERVES, AWAY FROM SUBURBS . . .</p>
+                                            </div>
 
-                                                <div class="row">
-                                                    <div class="large-6 small-12 columns">
-                                                        <p>CALM THOSE NERVES, AWAY FROM SUBURBS . . .</p>
+                                                <div className='spa-quots'>
+                                                    <div className='spa-quots-content' >
 
                                                         <p>Calm Those Nerves, Away From Suburbs . . . Fatigued, tired, and stressed out? We have something just for you that would provide a perfect escape from the hustle and bustle of the city life. A full body massage with natural oils that permeate the body and relieve those tense muscles, allowing you to get rid of lassitude and filling you with vigour. The vitamin E in the oils will bring back the shine to your skin and help your body to loosen up. Choose from below:</p>
                                                     </div>
 
-                                                    <div class="large-6 small-12 columns ps-top-padding add-more-bottom">
+                                                    <div className='spa-quots-img'>
                                                         <img alt="Agonda Beach Resort" src="//s3-ap-southeast-1.amazonaws.com/assets-powerstores-com/data/org/17347/media/img/source/edit/1799139_edit.jpg" />
-                                                        </div>
-                                                </div>
+                                                    </div>
+                                                </div>                                      
 
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
+                            </section>
 
 
                                 <section class="media_gallery featured-products">
-                                    <div class="row">
-                                        <div class="column">
 
 
-                                            <ul class="small-block-grid-1 large-block-grid-3 text-center listing items">
+                                            <ul className="spa-containenr">
 
                                                 <li>
                                                     <div class="image">
@@ -315,50 +300,29 @@ const Spa = () => {
                                             </ul>
 
 
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="columns text-center viewAllSection large-12">
-
-                                            <div class="main-text"></div>
-
-                                        </div>
-                                    </div>
 
                                 </section>
 
 
 
-                                <div class="row">
-                                    <div class="columns large-12 small-12 ps-top-padding">
-                                        <div class="">
-                                            <div class="footer-profile-page-type content-footer">
+                                <section >
+                                            <div className="spa-footer">
                                                 <p>
-                                                    <a class="button red-button-bottom-gap" href="https://form.jotform.me/82394848884477" rel="nofollow" target="_blank">BOOK A SESSION</a></p>
+                                                    <a className="bottom-spa" 
+                                                    href="https://form.jotform.me/82394848884477" 
+                                                    rel="nofollow" target="_blank">BOOK A SESSION</a></p>
 
-                                                <h2 class="normal-text">For more details, <a class="cta" href="/pages/beach-huts-bungalows-resorts">Get in Touch With Cuba Goa Today!</a></h2>
+                                                <p className="normal-text-spa">For more details, 
+                                                <a className="cta" href="/pages/beach-huts-bungalows-resorts">
+                                                    Get in Touch With Cuba Goa Today!</a></p>
 
-                                            </div>
-                                        </div>
                                     </div>
-                                </div>
+                                </section>
 
 
-                            </div>
                         </main>
-                        {/* <style>
-                            .listing .image-title {
-                                font - size: 16px;
-                            text-transform: uppercase;
-                            letter-spacing: 0.8px;
-                            padding: 20px 0;
-}
-                        </style> */}
-                    </div>
-                </div>
-            </div>
-        </div>
+
+                    </main>
     )
 }
 
