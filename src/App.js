@@ -1,33 +1,39 @@
 import './App.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import React from 'react';
 import { Suspense } from 'react';
-import Footer from './components/Root-Component/Footer';
+import Footer from './components/Root-Component/Footer/Footer';
 
 
 const Header = React.lazy(()=>import('./components/Header/Header'))
-const Home = React.lazy(()=>import('./components/Root-Component/Home'))
-const About=React.lazy(()=>import('./components/Root-Component/About'))
-const Spa=React.lazy(()=>import('./components/Root-Component/Spa'))
-const ForSale = React.lazy(()=>import('./components/Root-Component/ForSale'))
-const Resorts = React.lazy(()=>import('./components/Root-Component/Resorts'))
-const OurProperties = React.lazy(()=>import('./components/Root-Component/OurProperties'))
-const ContactUs = React.lazy(()=>import('./components/Root-Component/ContactUs'))
-const Gallery = React.lazy(()=>import('./components/Root-Component/Gallery'))
-
-
-
-
+const Home = React.lazy(()=>import('./components/Root-Component/Home/Home'))
+const About=React.lazy(()=>import('./components/Root-Component/About/About'))
+const Spa=React.lazy(()=>import('./components/Root-Component/spa/Spa'))
+const ForSale = React.lazy(()=>import('./components/Root-Component/ForSale/ForSale'))
+const Resorts = React.lazy(()=>import('./components/Root-Component/Resorts/Resorts'))
+const OurProperties = React.lazy(()=>import('./components/Root-Component/OurProperties/OurProperties'))
+const ContactUs = React.lazy(()=>import('./components/Root-Component/Contact/ContactUs'))
+const Gallery = React.lazy(()=>import('./components/Root-Component/Gallery/Gallery'))
+const Login = React.lazy(()=>import('./components/Root-Component/Login/Login'))
+const  BookingPage = React.lazy(()=>import('./components/Root-Component/BookingPage/BookingPage'))
 
 function App() {
+
   return (
     <div style={{position:'relative'}}>
     <BrowserRouter>
       <Routes>
            
-     <Route path="/" element={<Header/>}>
+     <Route path="" element={<Header/>}>
+
 
      <Route path='' element={
+      <Suspense fallback={<p>Loading....</p>}>
+         <Login/>
+     </Suspense>
+     } />
+
+     <Route path='/home' element={
       <Suspense fallback={<p>Loading....</p>}>
      <Home />
      </Suspense>
@@ -46,9 +52,9 @@ function App() {
      } />
 
 
-     <Route path='/forSale' element={
+     <Route path='/our-properties/:name/:id' element={
     <Suspense fallback={<p>Loading....</p>}> 
-     <ForSale/>
+     < BookingPage/>
      </Suspense>      
      }/>
 
@@ -87,9 +93,6 @@ function App() {
       </Routes>
     </BrowserRouter>  
     <Footer />
-
-   
-
   </div> 
   );
 }

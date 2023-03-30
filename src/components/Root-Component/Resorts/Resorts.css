@@ -1,0 +1,49 @@
+.resorts{
+    padding: 40px 0;
+    text-align: center;
+    background-color: white;
+
+}
+
+
+.resorts-container{
+height: 1000px;
+padding: 40px;
+display: grid;
+grid-template-columns: repeat(3,1fr);
+grid-auto-rows: minmax(400px,400px);
+gap: 10px;
+}
+.resort-title{
+    color: black;
+}
+.resort-card{
+    display: flex;
+    position: relative;   
+    overflow: hidden;
+}
+
+.img-parent img {
+    object-fit: cover;
+    width: 100%;
+    height:100% ;
+    padding: 0;
+}
+.text-of-resort{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.517);
+    width: 100%;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+}
+
+.text-of-resort:hover   {
+    height: 100%;
+}
+
+.text-of-resort-hover  {
+    height: 100%;
+}
