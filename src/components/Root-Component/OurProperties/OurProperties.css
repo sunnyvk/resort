@@ -186,3 +186,12 @@ color: #333;
 .properties-to-book > .book-button:hover{
     background-color: #009fe1;
 }
+
+.booking-form-p{
+    z-index: 100000000;
+}
+
+.room-info{
+    border: 1px solid gray;
+    padding:20px;
+}

@@ -1,18 +1,33 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Header.css'
 import { NavLink } from 'react-router-dom'
 import { Outlet } from 'react-router-dom'
 import {AiOutlineMenu} from 'react-icons/ai';
 import { useState } from 'react';
+import { useNavigate} from 'react-router-dom';
 
 
 
 const Header = () => {
 
   const [hidenew,setNavBar] = useState(true)
+  // let user = JSON.parse(localStorage.getItem('user-info'))
+  const navigate = useNavigate()
+  let user = JSON.parse(localStorage.getItem('user-info'))
+
+
+  useEffect(()=>{
+    if(user?.user){
+      navigate('/')
+      return
+    }
+navigate('/log-In')
+  },[])
 
   return (
     <>
+   {/* <Navigate to={'/login2'} replace={true}></Navigate> */}
+
     <header className='main-header'>
        <div className='header-manue'>
         <button onClick={()=>setNavBar((val)=>!val)}>
@@ -20,7 +35,7 @@ const Header = () => {
         </button>
        </div>
         <nav className={hidenew?'main-nav deactive-nav':'main-nav'}>
-            <NavLink to='/home'  className={({ isActive }) => (isActive ? 'main-nav-active' : '')}><span>HOME</span></NavLink>
+            <NavLink to='/'  className={({ isActive }) => (isActive ? 'main-nav-active' : '')}><span>HOME</span></NavLink>
             <NavLink to='/resorts' className={({ isActive }) => (isActive ? 'main-nav-active' : '')}><span>RESORTS</span></NavLink>
             <NavLink to='/our-properties'  className={({ isActive }) => (isActive ? 'main-nav-active' : '')}><span>OUR PROPERTIES </span></NavLink>
             {/* <NavLink to='/forSale'  className={({ isActive }) => (isActive ? 'main-nav-active' : '')}><span>FOR SALE</span></NavLink> */}

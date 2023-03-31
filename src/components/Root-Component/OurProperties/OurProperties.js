@@ -1,119 +1,169 @@
 import './OurProperties.css'
-import React from 'react'
-import banner from '../../../assets/pexels-pixabay-87430.jpg'
+import React, { useEffect } from 'react'
 import {AiOutlineDown,AiOutlineUp} from 'react-icons/ai'
 import {RiHotelLine} from 'react-icons/ri'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-
-const ourpropertiesData = [
-  {
-    imgurl:'https://d2wvwvig0d1mx7.cloudfront.net/data/org/17347/media/img/cache/290x0/1804345_290x0.jpg',
-    title:'PALOLEM BEACH RESORT',
-    content:`Located on the outskirts of the Palolem beach, these speciality offer a variety of accommodation options,
-    suited to specific retreats. With fully air-conditioned Seafront Cottages, fully air-conditioned Garden View 
-    Cottages, non a/c concrete rooms, and Family Rooms, Cuba Palolem Beach Resort upholds a mesmerizing sea view & 
-    lush green gardens surrounding the property where one can completely soak in the vibe of a beach holiday! The 
-    in-house Bar serves its cocktail Happy Hour and has wide selection of drinks. Other facilities at this hotel 
-    include hot water, room service, 
-   generator backup, laundry service, car parking, on-site Ayurvedic spa and complimentary Continental Breakfast.`,
-   bookingUrl:'#',
-   id:'1',
-   availableRoom:
-     [
-       {
-        imgurl:'https://d1vsci4s9o4dj5.cloudfront.net/thumb_173_20180820214944_0494131001534801784_333__DCI5568w_copy.jpg',
-        title:'STANDARD A/C GARDEN VIEW ROOM (ROOM ONLY)',
-        roomCapacity:{max:'2',min:'1'},
-        perRoomPerNight:'40000',
-        adults:'4',
-        children:'2',
-        room:'2',
-        leftRoom:'2'
-       },
-       {
-        imgurl:'https://d1vsci4s9o4dj5.cloudfront.net/thumb_173_20180820194938_0717302001534794578_172__DCI5501W_copy.jpg',
-        title:'STANDARD A/C GARDEN VIEW ROOM (ROOM ONLY)',
-        roomCapacity:{max:'2',min:'1'},
-        perRoomPerNight:'40000',
-        adults:'4',
-        children:'2',
-        room:'2',
-        leftRoom:'2'
-       }
-     ]
-   
-   
-},
-    {
-        imgurl:'https://d2wvwvig0d1mx7.cloudfront.net/data/org/17347/media/img/cache/290x0/1804346_290x0.jpg',
-        title:'CUBA PATNEM BEACH, BUNGALOWS',
-        content:`A haven for peace-lovers, Cuba Patnem Beach Bungalows host colourful & 
-        wooden a/c and non a/c cottages, set amongst tropical palms and lush gardens. 
-        Along with opulent verandahs & hammocks, we also offer private roof deck on request for one 
-        to enjoy a quaint & magical stay. Head to the shacks stretched across the beach and soak in the air, 
-        bask in the sun; we ensure your yearning of staying near the beach is slaked and the memories are aeonian.
-         The cottages are spacious and come with double beds, wardrobes, bedside tables and soft lighting. The bathrooms
-          have a modern sink at their center, and a separate toilet and shower either side – the only 
-        Western-style bathrooms of their kind in Patnem. Complimentary parking, Wi-Fi, and a Continental Breakfast are 
-        on offer too!`,
-       bookingUrl:'#',
-       id:'2'
-    },
-    {
-        imgurl:'https://d2wvwvig0d1mx7.cloudfront.net/data/org/17347/media/img/cache/290x0/1804347_290x0.jpg',
-        title:'CUBA AGONDA',
-        content:`Located in Canacona, Cuba Agonda Beach Hotel may be the ideal place to feel South Goa and its atmosphere. 
-        From here, guests can appreciate comfortable access to everything that the city gives. A well- retained atmosphere 
-        and it is closeness to Palolem Seaside, Cabo da Rama castle gives this hotel a unique appeal. The amenities and 
-        services offered by Cuba Agonda Beach Hotel guarantee a pleasing stay for visitors. Top benefits of the hotel include bar,
-         car parking area, restaurant, room service. The hotel characteristics 14 beautifully guest rooms, each including bathe, 
-         air conditioning,
-         fan, daily paper in the lobby etc. The hotel provides many special leisure opportunities for example garden.`,
-       bookingUrl:'#',
-       id:'3'
-
-    },
-
-    {
-        imgurl:'https://d2wvwvig0d1mx7.cloudfront.net/data/org/17347/media/img/cache/290x0/1804348_290x0.jpg',
-        title:'CUBA BEACH BUNGALOWS, PALOLEM',
-        content:`A beachfront lodging of the popular Palolem Seaside, Cuba Premium Beach Huts are just 2 km away from
-         Canacona Railway Station. Along with luxurious poster beds, wood fixtures, suit toilet with shower facilities 
-         & private parking, these beach huts are furnished with French doors & huge windows for one to sit & savour the 
-         calming view of the Arabian Sea the whole day. With a wide selection of drinks and cocktails, a shaded deck,
-          hammocks and huge bean bags, Cuba Premium Beach Hut is a high-spirited haven & allows all the perks for one to not 
-          only enjoy Goa’s highly reckoned nightlife but relaxed afternoon siestas too.`,
-        bookingUrl:'#',
-        id:'4'
-
-    },
-    {
-        imgurl:'https://d2wvwvig0d1mx7.cloudfront.net/data/org/17347/media/img/cache/290x0/1804349_290x0.jpg',
-        title:'CUBA PREMIUM HUTS, PALOLEM',
-        content:`A beachfront lodging of the popular Palolem Seaside, Cuba Premium Beach Huts are just 2
-         km away from Canacona Railway Station. Along with luxurious poster beds, wood fixtures, 
-         suit toilet with shower facilities & private parking, these beach huts are furnished with 
-         French doors & huge windows for one to sit & savour the calming view of the Arabian Sea the whole day.
-          With a wide selection of drinks and cocktails, a shaded deck, hammocks and huge bean bags, 
-          Cuba Premium Beach Hut is a high-spirited haven & allows all the perks for one to not only enjoy Goa’s 
-          highly reckoned nightlife but relaxed afternoon siestas too.`,
-        bookingUrl:'#',
-        id:'5'
-
-    }
-]
+import {CButton,CCol,CModal,CModalHeader,CModalTitle,CModalBody,CModalFooter,CFormInput,CRow, CFormTextarea} from '@coreui/react'
+import { storage } from '../../firebase'
+import { getDownloadURL, ref,uploadBytesResumable } from 'firebase/storage'
 
 
+//http://13.233.29.72:4000/hotelbook
 
 
 const OurProperties = () => {
 
   const [showList,setList] =  useState(false)
   const [selectedValue,setSelectedVal] = useState(['Select Hotel to Book',0])
+  const [ourPropertiesData,setOurPropertiesData] = useState([])
+  const [visible, setVisible] = useState(false)
+  const [resrtImgPrograss,setImgPrograss] = useState(0)
+  const [roomImgProgress,setRoomProgress] = useState(0)
+
+  const [roomImgUrl,setRoomImgUrl] = useState('')
+  const [resortImgUrl,setResortImgUrl] = useState('')
+
+  const [resortName,setResortName] = useState('')
+  const [roomName,setRoomName] = useState('')
+  const [max,setMax] = useState(0)
+  const [min,setMin] = useState(0)
+  const [content,setContent] = useState('')
+  const [children,setChildren] = useState('')
+  const [adults,setAdults] = useState('')
+  const [room,setRoom] = useState(0)
+  const [leftRoom,setLeftRoom] = useState(0)
+  const [rsRoomOnly,setRoomOnly] = useState(0)
+  const [rsbreakFast,setBreakFast] = useState(0)
+
+
+
+ const getOprPropertiesData = async  ()=>{
+const response = await fetch(`http://13.233.29.72:4001/hotelbook`,{headers:{
+  method:'GET'
+}})
+const data = await response.json()
+setOurPropertiesData(data)
+}
+
+ useEffect(()=>{
+    getOprPropertiesData()
+ },[])
+
+
+
+ const handleChange = event => {
+  const fileUploaded = event.target.files[0];
+  const file = event.target.files[0]
+   
+      const uploadImage = (file)=>{
+        if(!fileUploaded)return
+       const storageRef =   ref(storage,`photos/${fileUploaded.name}`)
+       const uploadTask = uploadBytesResumable(storageRef,fileUploaded)
+
+       uploadTask.on("state_changed",(snapshot)=>{
+        const prog = Math.round((snapshot.bytesTransferred/snapshot.totalBytes) *100)
+        setImgPrograss(prog)
+
+       },(error)=>{
+        console.log(error)
+       },
+       ()=>{
+        getDownloadURL(uploadTask.snapshot.ref).then((url)=>{
+          setResortImgUrl(url)
+        })
+       }
+       )
+      }
+      uploadImage(file)
+};
+
+
+
+const handleChange2 = event => {
+  const fileUploaded = event.target.files[0];
+  const file = event.target.files[0]
+   
+      const uploadImage = (file)=>{
+        if(!fileUploaded)return
+       const storageRef =   ref(storage,`photos/${fileUploaded.name}`)
+       const uploadTask = uploadBytesResumable(storageRef,fileUploaded)
+
+       uploadTask.on("state_changed",(snapshot)=>{
+        const prog = Math.round((snapshot.bytesTransferred/snapshot.totalBytes) *100)
+         setRoomProgress(prog)
+       },(error)=>{
+        console.log(error)
+       },
+       ()=>{
+        getDownloadURL(uploadTask.snapshot.ref).then((url)=>{
+          setRoomImgUrl(url)
+        })
+       }
+       )
+      }
+      uploadImage(file)
+};
+
+
+
+console.log(resortImgUrl,roomImgUrl)
+
+console.log(ourPropertiesData)
+
+
+ const saveResortInfo =()=>{
+  const data = {
+    imgurl:resortImgUrl,
+    title:resortName,
+    content:content,
+   bookingUrl:'#',
+   availableroom:
+     [
+       {
+        imgurl:roomImgUrl,
+        title2:roomName,
+        roomcapacity:{max:max,min:min},
+        perRoom:rsRoomOnly,
+        adults:adults,
+        children:children,
+        room:room,
+        leftroom:leftRoom,
+        perRoomPerWithBreakFast:rsbreakFast
+       },
+      
+     ]                    
+}
+
+console.log(data)
+
+fetch(`http://13.233.29.72:4001/hotelbook`, {
+  method: "POST",
+  headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data)
+}).then((resp) => {
+  resp.json().then(() => {
+      alert("successfully submitted")
+      getOprPropertiesData()
+  }).catch((error)=>{
+    console.log(error)
+  })
+})
+ }
+
+
+
+
+
+
+
 
   return (
     <main className='our-properties-main'>
+
 
 
        <div className='quba-goa-search'>
@@ -140,10 +190,10 @@ const OurProperties = () => {
            </div>
 
           {showList&& <ul className='options'>
-             {ourpropertiesData.map((el)=>
+             {ourPropertiesData.map((el)=>
                <li className='option' onClick={()=>setSelectedVal(()=>{
                 setList((val)=>!val)
-                return [el.title,el.id]
+                return [el.title,el._id]
                })}>
                <li><RiHotelLine/></li>
                <span className='option-text'>{el.title}</span>
@@ -159,11 +209,93 @@ const OurProperties = () => {
 
       </div>
          
+<CCol className='text-end px-4 py-3'>
+  
+<CButton className='mx-5' onClick={()=>setVisible(true)}>ADD ON</CButton>
+</CCol>
+
+<CModal visible={visible} onClose={() => setVisible(false)} className='booking-form-p' scrollable spellCheck  size='lg'>
+
+      <CModalHeader onClose={() => setVisible(false)}>
+        <CModalTitle><h4>Resort Info</h4></CModalTitle>
+      </CModalHeader>
+      <CModalBody>
+        <CRow>
+         <CCol lg={6}>
+         <CFormInput  type='file' label={`Upload Resort Image ${resrtImgPrograss}%`} onChange={handleChange} /> 
+         </CCol>
+         <CCol lg={6}>
+         <CFormInput label='Resort Name' value={resortName} onChange={(e)=>setResortName(e.target.value)} type='text'/>
+         </CCol>
+        </CRow>
+        <CRow>
+          <CCol className='mt-2'>
+          <CFormTextarea label='About Resort' value={content} onChange={(e)=>setContent(e.target.value)} ></CFormTextarea>
+          </CCol>
+        </CRow>
+
+        <CRow>
+         <CCol>
+             <h4>Room info</h4>
+         </CCol>
+        </CRow>         
+
+        <CRow>
+         <CCol lg={6}>
+         <CFormInput  type='file' label={`Upload Room Image ${roomImgProgress}%`} onChange={handleChange2} /> 
+         </CCol>
+         <CCol lg={6}>
+         <CFormInput label='Room Name' value={roomName} onChange={(e)=>setRoomName(e.target.value)} type='text'/>
+         </CCol>
+        </CRow>
+        <CRow>
+          <CCol className='mt-2' lg={6}>
+           <CFormInput label='Max Room Capacity ' type='number' value={max} onChange={(e)=>setMax(e.target.value)} />
+          </CCol>
+          <CCol className='mt-2' lg={6}>
+           <CFormInput label='Min Room Capacity ' type='number' value={min} onChange={(e)=>setMin(e.target.value)}  />
+          </CCol>
+        </CRow>
+        <CRow>
+          <CCol className='mt-2' lg={6}>
+           <CFormInput label='Adult Capacity ' value={adults} type='number'  onChange={(e)=>setAdults(e.target.value)} />
+          </CCol>
+          <CCol className='mt-2' lg={6}>
+           <CFormInput label='Children Capacity ' value={children} type='number' onChange={(e)=>setChildren(e.target.value)}  />
+          </CCol>
+        </CRow>
+        <CRow>
+          <CCol className='mt-2' lg={6}>
+           <CFormInput label='Room' type='number' value={room} onChange={(e)=>setRoom(e.target.value)}  />
+          </CCol>
+          <CCol className='mt-2' lg={6}>
+           <CFormInput label='Left Room' type='number'  value={leftRoom} onChange={(e)=>setLeftRoom(e.target.value)} />
+          </CCol>
+        </CRow>
+        <CRow>
+          <CCol className='mt-2' lg={6}>
+           <CFormInput label='Rs Room only' type='number' value={rsRoomOnly} onChange={(e)=>setRoomOnly(e.target.value)} />
+          </CCol>
+          <CCol className='mt-2' lg={6}>
+           <CFormInput label='Rs Room with Breakfast' type='number' value={rsbreakFast} onChange={(e)=>setBreakFast(e.target.value)}  />
+          </CCol>
+        </CRow>
 
 
+      </CModalBody>
+
+
+
+      <CModalFooter>
+        <CButton color="secondary" onClick={() => setVisible(false)}>
+          Close
+        </CButton>
+        <CButton color="primary" onClick={saveResortInfo}>Save Resort</CButton>
+      </CModalFooter>
+</CModal>
          
     <div className='about-hotel'>
-        {ourpropertiesData.filter((el)=>el.title===selectedValue[0]).map((el)=>
+        {ourPropertiesData.filter((el)=>el.title===selectedValue[0]).map((el)=>
         <div className='goa-properties'>
             <div className='img-container'>
                <img src={el.imgurl} alt="" />
@@ -175,7 +307,9 @@ const OurProperties = () => {
 
         </div>
         )}
+
    </div>
+
   </div>
 
   

@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate} from "react-router-dom";
 import React from 'react';
 import { Suspense } from 'react';
 import Footer from './components/Root-Component/Footer/Footer';
@@ -14,85 +14,117 @@ const Resorts = React.lazy(()=>import('./components/Root-Component/Resorts/Resor
 const OurProperties = React.lazy(()=>import('./components/Root-Component/OurProperties/OurProperties'))
 const ContactUs = React.lazy(()=>import('./components/Root-Component/Contact/ContactUs'))
 const Gallery = React.lazy(()=>import('./components/Root-Component/Gallery/Gallery'))
-const Login = React.lazy(()=>import('./components/Root-Component/Login/Login'))
 const  BookingPage = React.lazy(()=>import('./components/Root-Component/BookingPage/BookingPage'))
+const LogIn2 = React.lazy(()=>import('./components/Root-Component/LogIn2/Login2'))
 
 function App() {
+  let user = JSON.parse(localStorage.getItem('user-info'))
+
 
   return (
     <div style={{position:'relative'}}>
     <BrowserRouter>
       <Routes>
            
+    <Route  path='/log-in' element={  <Suspense fallback={<p>Loading....</p>}>
+         <LogIn2/>
+     </Suspense>}>
+      </Route>       
+
+
      <Route path="" element={<Header/>}>
 
 
-     <Route path='' element={
-      <Suspense fallback={<p>Loading....</p>}>
-         <Login/>
-     </Suspense>
-     } />
+    
 
-     <Route path='/home' element={
+     <Route path='/' element={
       <Suspense fallback={<p>Loading....</p>}>
-     <Home />
+        <>
+        <Home />
+        <Footer/>
+        </>
      </Suspense>
      } />
 
      <Route path="/about" element={
     <Suspense fallback={<p>Loading....</p>}>
-     <About />
+      <>
+      <About />
+      <Footer/>
+      </>
      </Suspense>
      }/>
 
      <Route path="/spa" element={
     <Suspense fallback={<p>Loading....</p>}> 
-     <Spa />    
+    <>
+    <Spa />    
+    <Footer/>
+    </>
     </Suspense> 
      } />
 
 
      <Route path='/our-properties/:name/:id' element={
-    <Suspense fallback={<p>Loading....</p>}> 
-     < BookingPage/>
+    <Suspense fallback={<p>Loading....</p>}>
+      <>
+      <BookingPage/>
+      <Footer/>
+      </> 
      </Suspense>      
      }/>
 
     <Route path='/resorts' element={
     <Suspense fallback={<p>Loading....</p>}> 
-     <Resorts/>
+    <>
+    <Resorts/>
+    <Footer/>
+    </>
      </Suspense>      
 
      }/>
 
     <Route path='/our-properties' element={
     <Suspense fallback={<p>Loading....</p>}> 
-     <OurProperties/>
+    <>
+    <OurProperties/>
+    <Footer/>
+    </>
      </Suspense>      
 
      }/>
 
    <Route path='/contact-us' element={
     <Suspense fallback={<p>Loading....</p>}> 
-     <ContactUs/>
+    <>
+    <ContactUs/>
+    <Footer/>
+    </>
      </Suspense>      
 
      }/>
 
   <Route path='/gallery' element={
     <Suspense fallback={<p>Loading....</p>}> 
-     <Gallery/>
-     </Suspense>      
+    <>
+    <Gallery/>
+    <Footer/>
+    </>
+    </Suspense>}/>
 
-     }/>
+
+
+  
 
     </Route>
 
-   
 
-      </Routes>
+
+    </Routes>
+
     </BrowserRouter>  
-    <Footer />
+
+ 
   </div> 
   );
 }

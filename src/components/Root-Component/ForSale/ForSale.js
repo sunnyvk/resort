@@ -64,7 +64,7 @@ const ForSale = () => {
 };
   
 
- const gethd = async ()=>{
+ const getHotelData = async ()=>{
 const response =   await fetch(`https://resort-api-5ws9.vercel.app/user`,{method: "GET"})
 
 console.log(await response.json())
@@ -74,7 +74,7 @@ console.log(await response.json())
 
 
 useEffect(()=>{
-gethd()
+getHotelData()
 },[])
 
 
