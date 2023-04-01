@@ -1,5 +1,5 @@
 import './Resorts.css'
-import { useState } from 'react'
+import { useEffect, useState, } from 'react'
 import beachResort2 from '../../../assets/resort.mp4'
 
 import cubapatnam from '../../../assets/CUBA_PATNEM_BEACH_BUNGALOWS.jpg'
@@ -11,6 +11,7 @@ import cubpatnam from '../../../assets/PALOLEM_BEACH_RESORT.jpg'
 const Resorts = () => {
 
     const [hover,setHover] = useState(false)
+    const [resortData,setResortData] = useState()
 
  function hoverOverImg (){
     setHover(true)
@@ -18,6 +19,17 @@ const Resorts = () => {
  function hoverOverNotImg (){
     setHover(false)
  }
+
+const getHotelData  = async  ()=>{
+ const response = await  fetch(`http://13.233.29.72:4001/hotelbook`)
+ setResortData(response.data)
+}
+
+useEffect(()=>{
+getHotelData()
+},[])
+
+console.log(resortData)
 
 
   return (

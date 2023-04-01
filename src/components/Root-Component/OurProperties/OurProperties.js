@@ -4,7 +4,10 @@ import {AiOutlineDown,AiOutlineUp} from 'react-icons/ai'
 import {RiHotelLine} from 'react-icons/ri'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import {CButton,CCol,CModal,CModalHeader,CModalTitle,CModalBody,CModalFooter,CFormInput,CRow, CFormTextarea} from '@coreui/react'
+import {CButton,CCol,CModal,CModalHeader,
+  CModalTitle,CModalBody,CModalFooter,CFormInput,CRow,
+   CFormTextarea,CFormCheck,CCard,CCardHeader, CCardBody,
+  } from '@coreui/react'
 import { storage } from '../../firebase'
 import { getDownloadURL, ref,uploadBytesResumable } from 'firebase/storage'
 
@@ -17,7 +20,7 @@ const OurProperties = () => {
   const [showList,setList] =  useState(false)
   const [selectedValue,setSelectedVal] = useState(['Select Hotel to Book',0])
   const [ourPropertiesData,setOurPropertiesData] = useState([])
-  const [visible, setVisible] = useState(false)
+  const [visibleForm, setVisibleForm] = useState(false)
   const [resrtImgPrograss,setImgPrograss] = useState(0)
   const [roomImgProgress,setRoomProgress] = useState(0)
 
@@ -35,6 +38,20 @@ const OurProperties = () => {
   const [leftRoom,setLeftRoom] = useState(0)
   const [rsRoomOnly,setRoomOnly] = useState(0)
   const [rsbreakFast,setBreakFast] = useState(0)
+  const [roomPerNight,setRomPerNight] = useState(0)
+  const [roomAminities,setRoomAminities] = useState('')
+  const [notCancable,setNotCacable] = useState(false)
+  const [wardrobe,seWardRobe] = useState(false)
+  const [besideTable,setBesideTable] = useState(false)
+  const [fan,setFan] = useState(false)
+  const [balcony,setBalcony] = useState(false)
+  const [houseKeping,setHouseKeping] = useState(false)
+  const [mosquito,setMosquito] = useState(false)
+  const [hour24ColdShower,set24HourColdShower] = useState(false)
+  const [wifi,setWifi] = useState(false)
+  const [airCodition,setAirCondition] = useState(false)
+
+
 
 
 
@@ -129,9 +146,21 @@ console.log(ourPropertiesData)
         children:children,
         room:room,
         leftroom:leftRoom,
-        perRoomPerWithBreakFast:rsbreakFast
-       },
-      
+        perRoomPerWithBreakFast:rsbreakFast,
+        Guest_Reviews:'No Reviews',
+        Room_Amenities:'',
+        nonCancel:notCancable,
+        Wardrobe: wardrobe,
+        Bedside_Table:besideTable,
+        Fan:fan,
+        Balcony:balcony,
+        House_Keeping:houseKeping,
+        pernightroom:roomPerNight,
+        mosquitonet:mosquito,
+        Wifi:wifi,
+        coldshower_24hrs:hour24ColdShower,
+        airconditioned:airCodition,
+       },      
      ]                    
 }
 
@@ -157,7 +186,7 @@ fetch(`http://13.233.29.72:4001/hotelbook`, {
 
 
 
-
+console.log(visibleForm)
 
 
 
@@ -210,16 +239,19 @@ fetch(`http://13.233.29.72:4001/hotelbook`, {
       </div>
          
 <CCol className='text-end px-4 py-3'>
-  
-<CButton className='mx-5' onClick={()=>setVisible(true)}>ADD ON</CButton>
+<CButton className='mx-5' onClick={() => setVisibleForm(true)}>ADD ON</CButton>
 </CCol>
 
-<CModal visible={visible} onClose={() => setVisible(false)} className='booking-form-p' scrollable spellCheck  size='lg'>
+<CModal
+  keyboard={false}
+  portal={false}
+  visible={visibleForm} 
+className='booking-form-p ' scrollable size='lg'>
 
-      <CModalHeader onClose={() => setVisible(false)}>
+      <CModalHeader  onClick={() => {setVisibleForm(false)}}>
         <CModalTitle><h4>Resort Info</h4></CModalTitle>
       </CModalHeader>
-      <CModalBody>
+      <CModalBody >
         <CRow>
          <CCol lg={6}>
          <CFormInput  type='file' label={`Upload Resort Image ${resrtImgPrograss}%`} onChange={handleChange} /> 
@@ -272,6 +304,7 @@ fetch(`http://13.233.29.72:4001/hotelbook`, {
            <CFormInput label='Left Room' type='number'  value={leftRoom} onChange={(e)=>setLeftRoom(e.target.value)} />
           </CCol>
         </CRow>
+        
         <CRow>
           <CCol className='mt-2' lg={6}>
            <CFormInput label='Rs Room only' type='number' value={rsRoomOnly} onChange={(e)=>setRoomOnly(e.target.value)} />
@@ -280,6 +313,85 @@ fetch(`http://13.233.29.72:4001/hotelbook`, {
            <CFormInput label='Rs Room with Breakfast' type='number' value={rsbreakFast} onChange={(e)=>setBreakFast(e.target.value)}  />
           </CCol>
         </CRow>
+        <CRow>
+          <CCol className='mt-2' lg={6}>
+           <CFormInput label='Room No Of Per night' type='number' value={roomPerNight} onChange={(e)=>setRomPerNight(e.target.value)} />
+          </CCol>
+          <CCol className='mt-2' lg={6}>
+           <CFormInput label='Room Amenities' type='text' value={roomAminities} onChange={(e)=>setRoomAminities(e.target.value)} />
+          </CCol>
+        
+        </CRow>
+ 
+
+        <CCard className='mx-2 mt-4'>
+           <CCardHeader className='text-center'>
+            <h4>Room Facility</h4>
+           </CCardHeader>
+           <CCardBody className='p-4 ' >
+            
+        <CRow className='text-start'>
+        <CCol className='mt-2' >
+           <CFormCheck type='checkbox' label='Non Cancel / Non Refundable' 
+           checked={notCancable} onChange={()=>setNotCacable(val=>!val)} />
+          </CCol>     
+          <CCol className='mt-2' >
+           <CFormCheck type='checkbox' label='Wardrobe' 
+             checked={wardrobe} onChange={()=>seWardRobe(val=>!val)}
+            />
+          </CCol>                
+        </CRow>
+
+        <CRow className='text-start'>
+        <CCol className='mt-2' >
+           <CFormCheck type='checkbox' label='Bedside Table' 
+           checked={besideTable} onChange={()=>setBesideTable(val=>!val)}  />
+          </CCol>  
+          <CCol className='mt-2' >
+           <CFormCheck type='checkbox' label='Fan'
+           checked={fan} onChange={()=>setFan(val=>!val)}/>
+          </CCol>                 
+        </CRow >
+
+        <CRow className='text-start'>
+        <CCol className='mt-2' >
+           <CFormCheck type='checkbox' label='Balcony'
+           checked={balcony} onChange={()=>setBalcony(val=>!val)}/>
+          </CCol> 
+          <CCol className='mt-2' >
+           <CFormCheck type='checkbox' label='House Keeping' 
+           checked={houseKeping} onChange={()=>setHouseKeping(val=>!val)}/>
+          </CCol>                
+        </CRow>
+
+        <CRow className='text-start'>
+        <CCol className='mt-2' >
+           <CFormCheck type='checkbox' label='Mosquito Net'
+           checked={mosquito} onChange={()=>setMosquito(val=>!val)}/>
+          </CCol>  
+          <CCol className='mt-2' >
+           <CFormCheck type='checkbox' label='24hr hot & cold shower'
+           checked={hour24ColdShower} onChange={()=>set24HourColdShower(val=>!val)}
+           />
+          </CCol>                
+        </CRow>
+        <CRow className='text-start' >
+        <CCol className='mt-2' >
+           <CFormCheck type='checkbox' label='WiFi' 
+           checked={wifi}  onChange={()=>setWifi(val=>!val)} />
+          </CCol>  
+          <CCol className='mt-2' >
+           <CFormCheck type='checkbox'  label='AIR-CONDITIONED' 
+           checked={airCodition} onChange={()=>setAirCondition(val=>!val)}
+            />
+          </CCol>    
+               
+        </CRow>
+
+           </CCardBody>
+
+
+        </CCard>
 
 
       </CModalBody>
@@ -287,9 +399,9 @@ fetch(`http://13.233.29.72:4001/hotelbook`, {
 
 
       <CModalFooter>
-        <CButton color="secondary" onClick={() => setVisible(false)}>
+        {/* <CButton color="secondary" onClick={() => setVisibleForm(false)}>
           Close
-        </CButton>
+        </CButton> */}
         <CButton color="primary" onClick={saveResortInfo}>Save Resort</CButton>
       </CModalFooter>
 </CModal>
