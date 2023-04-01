@@ -4,20 +4,27 @@ import { NavLink } from 'react-router-dom'
 import { Outlet } from 'react-router-dom'
 import {AiOutlineMenu} from 'react-icons/ai';
 import { useState } from 'react';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate,useLocation} from 'react-router-dom';
 
 
 
 const Header = () => {
 
   const [hidenew,setNavBar] = useState(true)
+  const location1 = useLocation()
   // let user = JSON.parse(localStorage.getItem('user-info'))
   const navigate = useNavigate()
   let user = JSON.parse(localStorage.getItem('user-info'))
 
+  console.log(location1)
+
 
   useEffect(()=>{
-    if(user?.user){
+     if(user?.user && location1!=='/'){
+          return 
+     } 
+
+    if(user?.user  ){
       navigate('/')
       return
     }

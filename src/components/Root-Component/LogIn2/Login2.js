@@ -13,7 +13,7 @@ const Login2 = () => {
     async function login() {
         if (email != '' || password != '') {
           let item = { email, password,userName: email.split('@')[0]+"CubGoa"}
-          let result = await fetch("http://13.233.29.72:4001/login", {
+          let result = await fetch("https://allapiresort-w3ql.vercel.app/login", {
             method: "POST",
             headers: {
               'Accept': 'application/json',

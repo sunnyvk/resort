@@ -10,9 +10,9 @@
 height: 1000px;
 padding: 40px;
 display: grid;
-grid-template-columns: repeat(3,1fr);
-grid-auto-rows: minmax(400px,400px);
-gap: 10px;
+grid-template-columns: repeat(auto-fit,300px);
+grid-auto-rows: minmax(300px,300px);
+gap: 30px;
 }
 .resort-title{
     color: black;
@@ -27,22 +27,31 @@ gap: 10px;
     object-fit: cover;
     width: 100%;
     height:100% ;
+
     padding: 0;
+    transition: 0.4s;
+    position: relative;
+
 }
+
+.img-parent  img:hover{
+    width: 120%;
+    height: 120%;
+    cursor: pointer;
+}
+
 .text-of-resort{
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.517);
+    background-color: rgba(0, 0, 0, 0.688);
     width: 100%;
     bottom: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: 0.5s;
+    color: white;
 }
 
-.text-of-resort:hover   {
-    height: 100%;
-}
 
 .text-of-resort-hover  {
     height: 100%;

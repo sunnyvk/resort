@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import {CButton,CCol,CModal,CModalHeader,
   CModalTitle,CModalBody,CModalFooter,CFormInput,CRow,
    CFormTextarea,CFormCheck,CCard,CCardHeader, CCardBody,
+   CImage
   } from '@coreui/react'
 import { storage } from '../../firebase'
 import { getDownloadURL, ref,uploadBytesResumable } from 'firebase/storage'
@@ -166,7 +167,7 @@ console.log(ourPropertiesData)
 
 console.log(data)
 
-fetch(`http://13.233.29.72:4001/hotelbook`, {
+fetch(`https://allapiresort-w3ql.vercel.app/hotelbook`, {
   method: "POST",
   headers: {
       'Accept': 'application/json',
@@ -410,7 +411,7 @@ className='booking-form-p ' scrollable size='lg'>
         {ourPropertiesData.filter((el)=>el.title===selectedValue[0]).map((el)=>
         <div className='goa-properties'>
             <div className='img-container'>
-               <img src={el.imgurl} alt="" />
+               <CImage rounded thumbnail  width={2000} height={2000} src={el.imgurl} alt="" />
             </div>
             <div className='our-properties-content'>
                 <h2>{el.title}</h2>

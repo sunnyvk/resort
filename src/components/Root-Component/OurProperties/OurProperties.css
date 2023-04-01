@@ -24,6 +24,7 @@ padding: 0;
 }
 .img-container{
     padding-top: 10px;
+    opacity: 0.8;
 }
 .img-container img{
    padding: 0;
@@ -33,21 +34,21 @@ padding: 0;
 @media (max-width:1000px){
     .goa-properties{
         display: block;
-        border-bottom: 1px solid black;
         padding-bottom: 20px;
         margin-bottom: 80px;
+        max-width: 500px;
     } 
     .our-properties-main{
         padding: 150px 40px;
         text-align: center;
     }
-    .img-container{
-        display: flex;
-        justify-content: center;
-    }
+   
     .our-properties-content p{
         text-align: justify;              
 
+    }
+    .img-container{
+        opacity: 0.8;
     }
 }
 

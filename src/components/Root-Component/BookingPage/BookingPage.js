@@ -11,33 +11,19 @@ const BookingPage = () => {
     const [bookingData,setBookingData] = useState('')
     const [value1,setVal1] = useState(false)
     const [value2,setVal2] = useState(false)
-
     const [summaryData,setSummaryData] = useState([])
 
 
-   
-   console.log(id)
     
-
-
     const getHotelData = async ()=>{
-      const response =   await fetch(`http://13.233.29.72:4001/hotelbook/${id}`,{method: "GET"})
-      
+
+      const response =   await fetch(`https://allapiresort-w3ql.vercel.app/hotelbook/${id}`,{method: "GET"})      
       setBookingData(await response.json())
-      
       } 
-      
-      
-      
+       
       useEffect(()=>{
       getHotelData()
       },[])
-
-
-
-
-   console.log(bookingData)
-   console.log(summaryData)
 
    
     

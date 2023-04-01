@@ -1,6 +1,7 @@
 import './Resorts.css'
 import { useEffect, useState, } from 'react'
 import beachResort2 from '../../../assets/resort.mp4'
+import { CImage } from '@coreui/react'
 
 import cubapatnam from '../../../assets/CUBA_PATNEM_BEACH_BUNGALOWS.jpg'
 import cubpatnam from '../../../assets/PALOLEM_BEACH_RESORT.jpg'
@@ -11,9 +12,9 @@ import cubpatnam from '../../../assets/PALOLEM_BEACH_RESORT.jpg'
 const Resorts = () => {
 
     const [hover,setHover] = useState(false)
-    const [resortData,setResortData] = useState()
+    const [resortData,setResortData] = useState([])
 
- function hoverOverImg (){
+ function hoverOverImg (e){
     setHover(true)
  }
  function hoverOverNotImg (){
@@ -21,8 +22,8 @@ const Resorts = () => {
  }
 
 const getHotelData  = async  ()=>{
- const response = await  fetch(`http://13.233.29.72:4001/hotelbook`)
- setResortData(response.data)
+ const response = await  fetch(`https://allapiresort-w3ql.vercel.app/hotelbook`)
+ setResortData(await response.json())
 }
 
 useEffect(()=>{
@@ -43,26 +44,19 @@ console.log(resortData)
 <h2 className='resort-title'>LEARN MORE ABOUT OUR RESORTS</h2>
 <div className='resorts-container'>
   
-<div className='resort-card'>
+{resortData.map((el)=><div className='resort-card'>
 <div className='img-parent' >
-    <img src={cubapatnam} alt=""
-     onMouseOver={hoverOverImg} 
-     onMouseLeave={hoverOverNotImg} />
+     <CImage rounded thumbnail src={el.imgurl} width={200} height={200} />
+
 </div>
-<div className={hover?'text-of-resort-hover text-of-resort':'text-of-resort'}  >
+<div className={'text-of-resort'}  >
 <p>LEARN MORE ABOUT OUR RESORTS</p>
 </div>
 </div>
-<div className='resort-card'>
-<div className='img-parent' >
-    <img src={ cubpatnam} alt=""
-     onMouseOver={hoverOverImg} 
-     onMouseLeave={hoverOverNotImg} />
-</div>
-<div className={hover?'text-of-resort-hover text-of-resort':'text-of-resort'}  >
-<p>LEARN MORE ABOUT OUR RESORTS</p>
-</div>
-</div>
+)}
+
+
+
 
 
 </div>
