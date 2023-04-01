@@ -13,7 +13,6 @@ import { storage } from '../../firebase'
 import { getDownloadURL, ref,uploadBytesResumable } from 'firebase/storage'
 
 
-//http://13.233.29.72:4000/hotelbook
 
 
 const OurProperties = () => {
@@ -57,7 +56,7 @@ const OurProperties = () => {
 
 
  const getOprPropertiesData = async  ()=>{
-const response = await fetch(`http://13.233.29.72:4001/hotelbook`,{headers:{
+const response = await fetch(`https://allapiresort-w3ql.vercel.app/hotelbook`,{headers:{
   method:'GET'
 }})
 const data = await response.json()
