@@ -7,7 +7,6 @@
 }
 .goa-properties{
     display: flex;
-    margin-bottom: 80px;
     width: 90%;
     background-color: white;
     margin: auto;
@@ -15,6 +14,18 @@
 
 
 }
+
+.goa-properties-add-room{
+    display: flex;
+    width: 90%;
+    background-color: white;
+    margin: auto;
+    padding: 20px;
+    justify-content: end; 
+
+
+}
+
 .our-properties-content{
     font-size: 18px;
     margin-left: 20px;
@@ -35,9 +46,15 @@ padding: 0;
     .goa-properties{
         display: block;
         padding-bottom: 20px;
-        margin-bottom: 80px;
         max-width: 500px;
+    }
+    .goa-properties-add-room{
+        max-width: 500px;  
+        justify-content: center;
+ 
     } 
+
+
     .our-properties-main{
         padding: 150px 40px;
         text-align: center;
@@ -108,10 +125,7 @@ padding-bottom: 100px;
     padding: 22px;
     display: flex;
     justify-content: space-between;
-    /* align-items: center; */
     box-shadow: 2px 3px 5px 2px rgba(51, 51, 90, 0.303);
-
-
 }
 .properties-to-book .select-menu{
 
@@ -144,6 +158,8 @@ box-shadow: 0 0 5px rgba(0,0,0,0.1);
     border-radius: 4px;
     background: #fff;
     box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+
 }
 
 .options .option{

@@ -45,7 +45,7 @@ console.log(resortData)
 <div className='resorts-container'>
   
 {resortData.map((el)=><div className='resort-card'>
-<div className='img-parent' >
+<div className='img-parent-41' >
      <CImage rounded thumbnail src={el.imgurl} width={200} height={200} />
 
 </div>
